@@ -1,0 +1,23 @@
+.nav-link {
+    color: #41574c;
+    border-color: #818181;
+    border-radius: 0px;
+}
+.nav-link:hover {
+    color: aliceblue;
+    background-color: #207e96;
+}
+.nav-link.active {
+    background-color: #41574c;
+    color: white;
+    size: 10px;
+}
+.add-unit-btn { 
+    background-color: #28a745;
+    color: black;
+}
+.add-unit-btn:hover {
+    background-color: #218838;
+    color: white;
+}
+

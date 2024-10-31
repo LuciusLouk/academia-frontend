@@ -1,0 +1,61 @@
+<div class="row">
+  <section class="text-center">
+    <h1>{{ curso.nombre }}</h1>
+    <img [src]="curso.imagen" class="img-fluid rounded" alt="curso" width="640px" style="margin-bottom: 30px" />
+  </section>
+  <section *ngIf="userRol=='DOCENTE'">
+    <div *ngIf="curso.activo == false" class="form-text">Si desea mostrar el curso en la tienda presione el boton verde</div>
+    <div *ngIf="curso.activo == true" class="form-text">Si desea ocultar el curso de la tienda presione el botón rojo</div>
+    <button (click)="cambiarEstadoCurso()" *ngIf="curso.activo == false" class="btn btn-success">Mostrar Curso</button>
+    <button (click)="cambiarEstadoCurso()" *ngIf="curso.activo == true" class="btn btn-danger">Ocultar Curso</button>
+    <button class="btn btn-warning-louk" (click)="redirigirModificar()">Modificar Curso</button>
+  </section>
+
+  <!-- TABS DE UNIDADES -->
+  <section class="col-md-8">
+    <nav>
+      <ul class="nav nav-tabs">
+        <li class="nav-item" *ngFor="let u of unidades">
+          <a [routerLink]="['c/'+curso.id+'/u/'+ u.id]" class="nav-link" routerLinkActive="active"
+            aria-current="page">{{ u.titulo
+            }}</a>
+        </li>
+        <li class="nav-item" *ngIf="userRol=='DOCENTE'">
+          <button class="btn btn-primary-louk" aria-current="page" data-bs-toggle="modal" data-bs-target="#modalUnidad">
+            + Agregar Unidad
+          </button>
+        </li>
+      </ul>
+    </nav>
+    <router-outlet></router-outlet>
+  </section>
+
+  <!-- ASIDE -->
+  <aside class="col-md-4 col-0">
+    <h2 class="text-center">Detalles</h2>
+    <ul>
+      <li>Fecha de inicio: {{ curso.fechaInicio | date }}</li>
+      <li>Número de unidades: {{ unidades.length }}</li>
+      <li>Duración: {{ curso.duracionMeses }} meses</li>
+      <li>Cupo: {{ curso.cupo }} estudiantes</li>
+      <li>Modalidad: {{ curso.modalidad }}</li>
+      <li *ngIf="curso.activo == true">Estado: Visible</li>
+      <li *ngIf="curso.activo == false">Estado: Oculto</li>
+    </ul>
+  </aside>
+</div>
+
+<!-- Modal FORMULARIO DE NUEVA UNIDAD -->
+<div class="modal fade" id="modalUnidad" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Formulario de Unidad</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <app-form-unidad></app-form-unidad>
+      </div>
+    </div>
+  </div>
+</div>

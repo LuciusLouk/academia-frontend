@@ -1,0 +1,45 @@
+<form class="row g-5">
+  <div class="col-md-8">
+    <div class="row g-3">
+      <div class="mb-3 form-group">
+        <label for="titulo" class="form-label">Titulo de la Unidad</label>
+        <input type="text" class="form-control" id="titulo" name="titulo" [(ngModel)]="obUnidad.titulo" />
+      </div>
+      <div class="mb-3 form-group">
+        <label for="descripcion" class="form-label">Descripcion de la Unidad</label>
+        <textarea type="text" class="form-control" id="descripcion" name="descripcion"
+          [(ngModel)]="obUnidad.descripcion"></textarea>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button data-bs-dismiss="modal" type="submit" class="btn btn-success col-md-4 m-3" (click)="registrarUnidad()">
+      Generar Unidad
+    </button>
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+      Close
+    </button>
+  </div>
+</form>
+
+
+<!--
+  <div class="col-md-4">
+    <div class="text-center">
+      <h5>Cargar un Archivo</h5>
+    </div>
+   
+      <div class="input-file">
+        <input type="file"
+                placeholder="file"
+                #fileInput
+                (change)="onFileChange($event)"
+                formControlName="file">
+        <img *ngIf="image" class="img-fluid img-thumbnail image" src="{{image}}" alt="no sé por qué no carga xd">
+      </div>
+      <input type="text" placeholder="Name" formControlName="name" class="name-picture mt-2">
+      <br>
+
+  </div>
+  
+      -->

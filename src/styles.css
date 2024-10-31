@@ -1,1 +1,342 @@
 /* You can add global styles to this file, and also import other style files */
+
+#louk{
+    
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+.banner-louk{
+    transition: box-shadow 0.3s ease; /* Cambia el efecto de sombra en 0.3 segundos */
+}
+.banner-louk:hover{
+    box-shadow: 2px 2px 10px 1px #a9f093;
+}
+
+.section{
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+.section-header{
+    display: flex;
+    justify-content: space-between;
+}
+
+
+/* Para el encabezado (h1, h2, etc.) y botones */
+h1, h2, h3, h4, h5, h6, .btn, .a-louk {
+    font-family: 'Montserrat', sans-serif; 
+    color: #333333;
+}
+
+/* Para los párrafos y texto general */
+body, p {
+    font-family: 'Lato', sans-serif;
+    color: #333333;
+}
+
+
+/*^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ CARDS ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^*/
+.card-louk{
+    color: aliceblue;
+    backdrop-filter: blur(10px);
+    border-color: aliceblue;
+    border-width: 0px 1px 1px 0px;
+    border-style: double;
+    background-color:#133136a9;
+}
+.card-louk-2{
+    background-color:#13313611 ;
+    box-shadow: -10px 10px 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card-louk-2:hover {
+    transform: scale(1.05); /* Escala la card al 105% de su tamaño original */
+    box-shadow: -12px 12px 15px #1d0f1666; /* Ajusta la sombra para que sea más pronunciada */
+}
+
+.card-louk-header,.card-louk-footer{
+    background-color: #01493d ;
+    display: flex;
+    align-content: center;
+    height: 30px;
+}
+
+.card-descrip-louk{
+    padding: 10px
+}
+
+
+
+.image-container-louk {
+    position: relative;
+    border-radius: 5px;
+    width: 100%; /* Ocupa todo el ancho disponible */
+    max-width: 100%; /* Asegura que no exceda el contenedor */
+    height: 200px; /* Altura fija para la imagen */
+    overflow: hidden; /* Oculta el exceso de la imagen */
+}
+.image-louk {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ajusta la imagen para que cubra el contenedor sin distorsionar */
+}
+.text-overlay {
+    font-size: 4vw; /* Se ajusta según el ancho de la pantalla */
+    /* O usando una media query para tamaños de pantalla específicos */
+    font-size: 18px;
+    font-weight: bold; /* Negrita para resaltar el texto */
+    position: absolute; /* Permite posicionar el texto sobre la imagen */
+    top: 10%; /* Centra verticalmente el texto */
+    left: 35%; /* Centra horizontalmente el texto */
+    transform: translate(-50%, -50%); /* Ajusta para un centrado perfecto */
+    color: aliceblue; /* Color del texto */
+    z-index: 10; /* Asegura que el texto esté sobre la imagen */
+}
+@media (max-width: 768px) {
+    .text-overlay {
+        font-size: 3vw; /* Ajusta el tamaño del texto para pantallas más pequeñas */
+    }
+}
+
+@media (max-width: 480px) {
+    .text-overlay {
+        font-size: 14px; /* Tamaño de texto aún más pequeño en dispositivos móviles */
+    }
+}
+
+
+.price-tag-louk{
+    background-color: green; 
+    padding: 4px;
+    margin:0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: medium;
+}
+
+/*^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ ENLACES ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^*/
+.no-underline{
+    text-decoration: none;
+    color: inherit;
+}
+.a-louk{
+    color: aliceblue;
+    transition: color 0.3s ease; /* Cambia el color en 0.3 segundos */
+}
+.a-louk:hover{
+    color: #b8bcbe;
+}
+.a-warning-louk{
+    background-color: #ffd900; 
+    padding: 4px;
+    margin:0px;
+    text-align: center;
+    font-size: medium;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    position: relative; /* Permite ajustar la posición del botón en relación con su posición original */
+    right: -15px; /* Desplaza el botón hacia la derecha fuera del card */
+    transform: translateX(5%);
+}
+.a-info-louk{
+    background-color: #046A7C; 
+    color: aliceblue;
+    text-align: center;
+    font-size: large;
+    text-decoration: none;
+    
+    padding: 4px;
+    margin:0px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+
+
+}
+.a-info-louk:hover,.a-info-louk:focus{
+    background-color: #1f7180; 
+}
+
+/*^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ BOTONES ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^*/
+.btn-carousel-louk{
+    border-color: #fdfdfd;
+    border-width: 0px;
+    padding: 5px 5px;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0); /* Hacer el fondo más ligero */
+    border-radius: 50%; /* Mantener la forma redonda */
+    border: none; /* Eliminar el borde si es necesario */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.btn-carousel-louk:hover{
+    transform: scale(1.10); 
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  width: 15px; /* Tamaño del icono más pequeño */
+  height: 15px;
+  background-size: 15px 15px; /* Ajustar el tamaño del icono */
+}
+
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+  background-color: rgba(0, 0, 0, 0.5); /* Opcional: agregar un pequeño efecto de hover */
+}
+
+button.btn-louk {
+    color: aliceblue;
+    border-color: #87c6fa;
+    border-width: 0px 1px 1px 0px;
+    background-color: #060415ef;
+    box-shadow:  #7f258054 4px 4px;
+}
+
+button.btn-louk:hover, button.btn-louk:focus{
+    color: aliceblue;
+    border-color: #87c6fa;
+    border-width: 1px 1px 1px 1px;
+    background-color: #050413ef;
+    box-shadow:  none;
+}
+
+/*^^^^^^^^^^^^^^^^^^ Success ^^^^^^^^^^^^^^^^^^*/
+button.btn-success-louk {
+    color: aliceblue;
+    border-color: #23d400;
+    border-width: 0px 1px 1px 0px;
+    background-color: #146e0cef;
+    box-shadow:  #7f258054 4px 4px;
+}
+
+button.btn-success-louk:hover, button.btn-louk:focus{
+    color: aliceblue;
+    border-color: #0e1f07;
+    border-width: 1px 1px 1px 1px;
+    background-color: #17880def;
+    box-shadow:  none;
+}
+/*^^^^^^^^^^^^^^^^^^ Primary ^^^^^^^^^^^^^^^^^^*/
+button.btn-primary-louk {
+    color: aliceblue;
+    background-color: #5254aab2;
+
+    border-radius: 0px;
+}
+
+button.btn-primary-louk:hover, button.btn-louk:focus{
+    color: aliceblue;
+    border-width: 1px 1px 1px 1px;
+    background-color: #2d30ccea;
+    box-shadow:  none;
+}
+/*^^^^^^^^^^^^^^^^^^ Warning ^^^^^^^^^^^^^^^^^^*/
+button.btn-warning-louk {
+    color: aliceblue;
+    background-color: #c99a19e5;
+
+    border-radius: 0px;
+}
+
+button.btn-warning-louk:hover, button.btn-louk:focus{
+    color: aliceblue;
+    border-width: 1px 1px 1px 1px;
+    background-color: #d39d0ab2;
+    box-shadow:  none;
+}
+/*^^^^^^^^^^^^^^^^^^ DANGER ^^^^^^^^^^^^^^^^^^*/
+button.btn-danger-louk {
+    color: aliceblue;
+    background-color: #d11b1bb2;
+
+    border-radius: 0px;
+}
+
+button.btn-danger-louk:hover, button.btn-louk:focus{
+    color: aliceblue;
+    border-color: #0e1f07;
+    border-width: 1px 1px 1px 1px;
+    background-color: #850808b2;
+    box-shadow:  none;
+}
+
+/*^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ INPUTS ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^*/
+input.input-louk{ 
+    border-top: none;
+    border-left: none;
+    border-color: rgb(135, 198, 250);  
+    border-radius: 5px;
+    
+    background-color: rgba(67, 97, 92, 0.473);
+    color: aliceblue;
+    transition: ease-in-out,box-shadow .25s ease-in-out;
+    margin-bottom: 20px;
+}
+
+input.input-louk:focus {
+    box-shadow:  rgb(135, 198, 250) 2px 2px;
+    color: aliceblue;
+    background-color:rgba(60, 97, 104, 0.705);
+}
+/*
+input:-webkit-autofill{
+    -webkit-box-shadow: 0 0 0 1000px rgb(67, 97, 92) inset !important;
+    -webkit-text-fill-color: white !important;
+}
+    */
+.img-logo{
+    width: 200px;
+}
+
+.group-louk{
+    position: relative;
+}
+i.login-icon{
+    position: absolute;
+    display: block;
+    bottom: .5rem;
+    right: 1rem;
+}
+i.form-icon{
+    position: absolute;
+    display: block;
+    bottom: 1.6rem;
+    right: 1.5rem;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+div.modal-louk{
+    color: aliceblue;
+    box-shadow:  rgba(127, 37, 128, 0.33) 3px 3px;
+    background-color: rgba(13, 21, 36, 0.966);
+
+}
+
+select.input-louk, select.input-louk:focus{
+    border-color: rgb(135, 198, 250);  
+    border-radius: 5px;
+    background-color: rgba(25, 31, 54, 0.288);
+    color: aliceblue;
+    transition: ease-in-out,box-shadow .25s ease-in-out;
+    margin-bottom: 20px;
+}
+
+option{
+    background-color: rgb(25, 31, 54);
+    color: aliceblue;
+}
+
+
+section{
+    margin-bottom: 20px;
+    margin-top: 20px;
+}

@@ -1,0 +1,173 @@
+<div class="p-5" *ngIf="userRol=='DOCENTE'">
+  <div class="text-center">
+    <h2>Registrar nuevo Curso</h2>
+  </div>
+  <form #cursoForm="ngForm" class="row g-5">
+    <div class="col-md-8">
+      <div class="row g-3">
+        <div class="mb-3 form-group">
+          <label for="inputNombre" class="form-label">Nombre del curso</label>
+          <input type="text" class="form-control input-louk" id="inputNombre" name="nombre"
+            placeholder="Ej: Introducción a la Programación" [(ngModel)]="obCurso.nombre" #nombreCurso="ngModel"
+            required minlength="5" maxlength="100" />
+        </div>
+        <div class="col-12">
+          <div *ngIf="
+              nombreCurso.invalid && (nombreCurso.dirty || nombreCurso.touched)
+            " class="alert alert-danger">
+            <div *ngIf="nombreCurso.errors?.['required']">
+              Debe especificar el nombre del curso.
+            </div>
+            <div *ngIf="nombreCurso.errors?.['minlength']">
+              El nombre del curso debe tener al menos 4 caracteres.
+            </div>
+          </div>
+        </div>
+        <div class="mb-3 col-md-6">
+          <label for="inputFechaInicio" class="form-label">Fecha de Inicio</label>
+          <input type="date" class="form-control input-louk" id="inputFechaInicio" name="fechaInicio"
+            [(ngModel)]="obCurso.fechaInicio" #fechaInicio="ngModel" required />
+        </div>
+        <div class="mb-3 col-md-6">
+          <label for="inputDuracion" class="form-label">Duración en meses</label>
+          <input type="number" class="form-control input-louk" id="inputDuracion" name="duracion"
+            [(ngModel)]="obCurso.duracionMeses" #duracionMeses="ngModel" required min="1" max="48" />
+        </div>
+
+        <div class="col-6">
+          <div *ngIf="fechaInicio.invalid &&(fechaInicio.dirty || fechaInicio.touched)" class="alert alert-danger">
+            <div *ngIf="fechaInicio.errors?.['required']">
+              Fecha de inicio es requerido.
+            </div>
+          </div>
+        </div>
+
+        <div class="col-6">
+          <div *ngIf="duracionMeses.invalid &&(duracionMeses.dirty || duracionMeses.touched)"
+            class="alert alert-danger">
+            <div *ngIf="duracionMeses.errors?.['min']">
+              El mínimo de duración es de 1.
+            </div>
+            <div *ngIf="duracionMeses.errors?.['max']">
+              El máximo de duración es de 48.
+            </div>
+            <div *ngIf="duracionMeses.errors?.['required']">
+              Duración es requerido.
+            </div>
+          </div>
+        </div>
+        <div class="mb-3 col-md-4">
+          <label for="inputCupo" class="form-label">Cupo</label>
+          <input type="number" class="form-control input-louk" id="inputCupo" name="cupo" [(ngModel)]="obCurso.cupo"
+            #cupo="ngModel" required min="1" max="500" />
+        </div>
+        <div class="mb-3 col-md-4">
+          <label for="inputModalidad" class="form-label">Modalidad {{obCurso.modalidad}}</label>
+          <select class="form-select input-louk" aria-label="Default select example" id="inputModalidad"
+            name="modalidad" [(ngModel)]="obCurso.modalidad" #modalidad="ngModel" required>
+            <option disabled>Selecciona una modalidad</option>
+            <option value="sincro">Sincrónico</option>
+            <option value="asincro">Asincrónico</option>
+          </select>
+        </div>
+        <div class="mb-3 col-md-4">
+          <label for="inputPrecio" class="form-label">Precio</label>
+          <input type="number" class="form-control input-louk" id="inputPrecio" name="precio"
+            [(ngModel)]="obCurso.precio" #precio="ngModel" required min="0" max="1000000"/>
+        </div>
+
+
+        <div class="col-4">
+          <div *ngIf="cupo.invalid &&(cupo.dirty || cupo.touched)"
+            class="alert alert-danger">
+            <div *ngIf="cupo.errors?.['min']">
+              El cupo minimo es de 1.
+            </div>
+            <div *ngIf="cupo.errors?.['max']">
+              El cupo máximo es de 500.
+            </div>
+            <div *ngIf="cupo.errors?.['required']">
+              Cupo es requerido.
+            </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div *ngIf="modalidad.invalid &&(modalidad.dirty || modalidad.touched)"
+            class="alert alert-danger">
+            <div *ngIf="modalidad.errors?.['required']">
+              Modalidad es requerido.
+            </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div *ngIf="precio.invalid &&(precio.dirty || precio.touched)"
+            class="alert alert-danger">
+            <div *ngIf="precio.errors?.['min']">
+              El precio minimo es de 0 (gratis).
+            </div>
+            <div *ngIf="precio.errors?.['max']">
+              El precio máximo es de 1000000 (1 Millón) .
+            </div>
+            <div *ngIf="precio.errors?.['required']">
+              Precio es requerido.
+            </div>
+          </div>
+        </div>
+
+
+        <!--
+        <div class="mb-3 form-check col-md-4">
+          <input
+            type="checkbox"
+            class="form-check-input"
+            id="exampleCheck1"
+            name="checkDescuento"
+            [(ngModel)]="checkDescuento"
+          />
+          <label class="form-check-label" for="exampleCheck1"
+            >Aplicar Descuento</label
+          >
+        </div>
+        <div class="mb-3 col-md-4">
+          <label for="inputDescuento" class="form-label">Descuento</label>
+          <select
+            class="form-select input-louk"
+            aria-label="Default select example"
+            id="inputDescuento"
+            name="descuento"
+            [(ngModel)]="obCurso.descuento"
+            [disabled]="!checkDescuento"
+          >
+            <option selected>Selecciona procentaje de descuento</option>
+            <option value="15">15%</option>
+            <option value="25">25%</option>
+            <option value="50">50%</option>
+          </select>
+        </div>
+        <div class="alert alert-info" role="alert">
+          Aplicar descuento en desarrollo
+        </div>
+        -->
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="text-center">
+        <h3>Cargar una imagen</h3>
+      </div>
+      <img [src]="files[0].base" class="img-thumbnail" style="max-width: 300px" alt="portada del curso" />
+      <label class="form-label" for="file">Elegir un archivo de su PC</label>
+      <input id="file" type="file" accept="image/*" (change)="onFileSelected($event)" />
+    </div>
+
+
+
+    <button type="submit" class="btn btn-success-louk col-md-4 m-3" [disabled]="!cursoForm.form.valid" *ngIf="cursoId==0"
+      (click)="registrarCurso()">
+      Generar Curso
+    </button>
+    <button type="submit" class="btn btn-warning-louk col-md-4 m-3" [disabled]="!cursoForm.form.valid" *ngIf="cursoId!=0"
+      (click)="modificarCurso()">
+      Modificar Curso
+    </button>
+  </form>
+</div>

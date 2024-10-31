@@ -1,0 +1,21 @@
+<form class="row g-5">
+  <div class="col-md-8">
+    <div class="row g-3">
+      <div class="mb-3 form-group">
+        <label for="titulo" class="form-label">Titulo del Contenido</label>
+        <input type="text" class="form-control" id="titulo" name="titulo" [(ngModel)]="obSeccion.titulo" />
+      </div>
+      <div class="mb-3 form-group">
+        <label for="titulo" class="form-label">Descripcion del Contenido</label>
+        <textarea type="text" class="form-control" id="titulo" name="titulo"
+          [(ngModel)]="obSeccion.descripcion"></textarea>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-success col-md-4 m-3" (click)="registrarSeccion()" data-bs-dismiss="modal">
+      Generar Sección
+    </button>
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+  </div>
+</form>

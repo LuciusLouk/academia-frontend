@@ -1,0 +1,83 @@
+<section class="section row">
+    <div class="section-header">
+        <h3>{{ obCurso.nombre }}</h3>
+    </div>
+    <div class="col-lg-8 col-md-12">
+        <div class="image-container-louk" style="height: 100%;">
+            <img [src]="obCurso.imagen" class="card-img-top h-100" alt="{{ obCurso.nombre }}" />
+            
+        </div>
+
+    </div>
+    <div class="col-lg-4 col-md-12">
+        <div class="card-louk-2">
+            <div class="card-body card-body-louk">
+                <div class="col-md-12 col-7 image-container-louk">
+                    <img [src]="obCurso.imagen" class="card-img-top d-block w-100 h-100" alt="{{ obCurso.nombre }}" />
+                    <div class="col-8 text-overlay">
+                        <p class="col-3 price-tag-louk">
+                            Docente
+                        </p>
+                    </div>
+                </div>
+                <div class="card-descrip-louk row">
+                    <div class="col-12">
+                        <h5>{{ obCurso.nombre }}</h5>
+                        <p class="card-text">Descripcion: {{ obCurso.modalidad }}</p>
+                        <p class="card-text">Modalidad: {{ obCurso.modalidad }}</p>
+                        <p class="card-text">Fecha de Inicio: {{ obCurso.fechaInicio | date:'dd/MM/YYYY'}}</p>
+                        <p class="card-text">Egresados de este curso: {{ obCurso.cantidadEgresados }} estudiantes</p>
+                        <p class="card-text">Cupo: {{ obCurso.cupo }}</p>
+                        <p class="card-text">Duración: {{ obCurso.duracionMeses }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+   <div>
+        <div *ngIf="habilitadoCompra" id="wallet_container"></div>
+   </div>
+</section>
+<section class="section row">
+    <div class="section-header">
+        <h3>Cursos Similares <button class="btn-carousel-louk" type="button" data-bs-target="#carouselExample"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="btn-carousel-louk" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </h3>
+
+        <a [routerLink]="['/app-curso-venta/']" class="a-louk">Ver mas...</a>
+    </div>
+    <!-- Carrusel para las cards restantes -->
+
+    <div id="carouselExample" class="carousel slide mb-3 mb-sm-3" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div *ngFor="let group of groupedCards; let i = index" class="carousel-item"
+                [ngClass]="{ active: i === 0 }">
+                <div class="d-flex">
+                    <div *ngFor="let c of group | slice : 0 : 3">
+                        <div class="card me-1 ms-1" style="background-color: rgb(55, 55, 65); color: aliceblue">
+                            <img [src]="c.imagen" height="150px" class="card-img-top" alt="{{ c.nombre }}" />
+                            <div class="card-body row">
+                                <h5 class="card-title col-9">{{ c.nombre }}</h5>
+                                <p class="col-3 h5 text-light text-center"
+                                    style="background-color: green; padding: 4px">
+                                    {{ c.precio | currency : "$" : true : "1.2-2" }}
+                                </p>
+                                <p class="card-text">
+                                    Inicio: {{ c.fechaInicio | date : "dd/MM/yyyy" }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>

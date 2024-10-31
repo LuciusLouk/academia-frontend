@@ -1,0 +1,233 @@
+<div class="row">
+    <aside class="col-md-3" *ngIf="false">
+        <section>
+            <a href="https://imgur.com/t1Cuyeb">
+                <img class="img-fluid" alt="..." width="500px" src="https://i.imgur.com/t1Cuyeb.jpg" />
+            </a>
+        </section>
+        <section>
+            <h4>Vistos Recientemente</h4>
+            <ul>
+                <li>Hunt: Showdown 1896</li>
+                <li>Fallout 76</li>
+            </ul>
+        </section>
+
+        <section>
+            <h4>Tus Etiquetas</h4>
+            <ul>
+                <li>Zombis</li>
+                <li>Lucha</li>
+                <li>Luchador en 2D</li>
+                <li>Defensa de torres</li>
+                <li>Posapocalípticos</li>
+            </ul>
+        </section>
+
+        <section>
+            <h4>Recomendados</h4>
+            <ul>
+                <li>Amigos</li>
+                <li>Mentores</li>
+                <li>Etiquetas</li>
+            </ul>
+        </section>
+
+        <section>
+            <h4>Explorar Categorías</h4>
+            <ul>
+                <li>Lo más vendido</li>
+                <li>Novedades</li>
+                <li>Próximamente</li>
+                <li>Ofertas</li>
+                <li>Títulos de RV</li>
+                <li>Compatibles con mandos</li>
+                <li>Perfecto para Deck</li>
+            </ul>
+        </section>
+
+        <section>
+            <h4>Explorar por Género</h4>
+            <ul>
+                <li>Free to Play</li>
+                <li>Acceso anticipado</li>
+                <li>Acción</li>
+                <li>Aventura</li>
+                <li>Carreras</li>
+                <li>Casuales</li>
+                <li>Deportes</li>
+                <li>Estrategia</li>
+                <li>Indie</li>
+                <li>Multijugador masivo</li>
+                <li>Rol</li>
+                <li>Simulación</li>
+            </ul>
+        </section>
+    </aside>
+
+    <div class="content-wrapper col-md-12">
+        <section class="section">
+            <h4>Novedad</h4>
+            <a href="https://imgur.com/Td3acJA" class="row">
+                <div class="banner-louk p-0">
+                    <img class="img-fluid w-100" alt="logo de pagina" src="https://i.imgur.com/Td3acJA.jpg"
+                        title="source: imgur.com" />
+                </div>
+            </a>
+        </section>
+
+        <section class="section">
+            <h3>Cursos con salida laboral</h3>
+            <div id="carouselExampleDark1" class="carousel slide">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleDark1" data-bs-slide-to="0" class="active"
+                        aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleDark1" data-bs-slide-to="1"
+                        aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleDark1" data-bs-slide-to="2"
+                        aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="https://i.imgur.com/w2dr6ih.jpg" width="1200px" height="400px" class="d-block w-100"
+                            alt="..." />
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>First slide label</h5>
+                            <p>
+                                Some representative placeholder content for the first slide.
+                            </p>
+                        </div>
+                    </div>
+                    <div *ngFor="let c of cursos | slice : 2 : 4" class="carousel-item">
+                        <img [src]="c.imagen" width="1200px" height="400px" class="d-block w-100" alt="..." />
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Second slide label</h5>
+                            <p>
+                                Some representative placeholder content for the second slide.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark1"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark1"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </section>
+
+        <section class="section row">
+            <div class="section-header">
+                <h4>Cursos de 12 Meses</h4>
+                <a [routerLink]="['/app-curso-venta/']" class="a-louk">Ver mas...</a>
+            </div>
+            <div *ngFor="let c of cursos | slice : 1 : 4" class="col-lg-4 col-md-6">
+                <a [routerLink]="['/app-curso-venta/'+c.id]" class="no-underline">
+                    <div class="card-louk-2">
+                        <div class="card-body card-body-louk">
+                            <div class="col-md-12 col-7 image-container-louk">
+                                <img [src]="c.imagen" class="card-img-top h-100" alt="{{ c.nombre }}" />
+                                <div class="col-8 text-overlay">
+                                    <p class="col-3 price-tag-louk">
+                                        {{ c.precio | currency : "$" : "symbol" : "1.2-2" }}
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="card-descrip-louk row">
+                                <div class="col-8">
+                                    <h5>{{ c.nombre }}</h5>
+                                    <p class="card-text">Modalidad: {{ c.modalidad }}</p>
+                                </div>
+                                <div class="col-4">
+                                    <p>Inicio: {{ c.fechaInicio | date : "dd/MM/yyyy" }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <section class="section row">
+            <div class="section-header">
+                <h3>Cursos Populares <button class="btn-carousel-louk" type="button" data-bs-target="#carouselExample"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="btn-carousel-louk" type="button" data-bs-target="#carouselExample"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button></h3>
+                
+                <a [routerLink]="['/app-curso-venta/']" class="a-louk">Ver mas...</a>
+            </div>
+            <!-- Carrusel para las cards restantes -->
+
+            <div id="carouselExample" class="carousel slide mb-3 mb-sm-3" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div *ngFor="let group of groupedCards; let i = index" class="carousel-item"
+                        [ngClass]="{ active: i === 0 }">
+                        <div class="d-flex">
+                            <div *ngFor="let c of group | slice : 0 : 3">
+                                <div class="card me-1 ms-1" style="background-color: rgb(55, 55, 65); color: aliceblue">
+                                    <img [src]="c.imagen" height="150px" class="card-img-top" alt="{{ c.nombre }}" />
+                                    <div class="card-body row">
+                                        <h5 class="card-title col-9">{{ c.nombre }}</h5>
+                                        <p class="col-3 h5 text-light text-center"
+                                            style="background-color: green; padding: 4px">
+                                            {{ c.precio | currency : "$" : "symbol" : "1.2-2" }}
+                                        </p>
+                                        <p class="card-text">
+                                            Inicio: {{ c.fechaInicio | date : "dd/MM/yyyy" }}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section row">
+            <div class="section-header">
+                <h3>Cursos Nuevos</h3>
+                <a [routerLink]="['/app-curso-venta/']" class="a-louk">Ver mas...</a>
+            </div>
+            <div class="col-12"></div>
+            <div *ngFor="let c of cursos | slice : 0 : 4" class="col-lg-6 col-md-6 mb-3 mb-sm-3">
+                <a [routerLink]="['app-checkout']" class="no-underline">
+                    <div class="card-louk-2">
+                        <div class="card-body card-body-louk">
+                            <div class="row">
+                                <div class="col-lg-7 col-md-12 col-7 image-container-louk">
+                                    <img [src]="c.imagen" class="card-img-top h-100" alt="{{ c.nombre }}" />
+                                    <div class="col-8 text-overlay">
+                                        <p class="col-3 price-tag-louk">
+                                            {{ c.precio | currency : "$" : "symbol" : "1.2-2" }}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-lg-5 card-descrip-louk">
+                                    <h5>{{ c.nombre }}</h5>
+                                    <p class="card-text">
+                                        Inicio: {{ c.fechaInicio | date : "dd/MM/yyyy" }}
+                                        <br />
+                                        Modalidad: {{ c.modalidad }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </section>
+    </div>
+</div>

@@ -1,0 +1,220 @@
+<section class="row">
+  <div>
+    <h5>Acciones</h5>
+    <button class="btn btn-warning-louk" data-bs-toggle="modal" data-bs-target="#modalUnidadModificacion"
+      (click)="prepararUnidad()">
+      Modificar Unidad
+    </button>
+    <button class="btn btn-danger-louk" (click)="eliminarUnidad()" >Eliminar Unidad</button>
+  </div>
+  <article class="col-md-12">
+    <h3 class="text-center">Unidad: {{ unidad.titulo }}</h3>
+    <p>
+      <span style="font-weight: bold">Descripcion:</span>
+      {{ unidad.descripcion }}
+    </p>
+  </article>
+  <h4 class="text-center">Contenido</h4>
+  <button *ngIf="userRol == 'DOCENTE'" class="btn btn-primary-louk" data-bs-toggle="modal"
+    data-bs-target="#modalSeccion">
+    + Agregar contenido
+  </button>
+  <article *ngFor="let s of secciones" [class]="'a' + (secciones.indexOf(s) % 2)">
+    <article>
+      <h4>{{ s.titulo }}</h4>
+      <p>{{ s.descripcion }}</p>
+    </article>
+    <table class="table">
+      <thead>
+        <tr>
+          <th style="background-color: #428b5700" scope="col">
+            <button *ngIf="userRol == 'DOCENTE'" class="btn btn-primary-louk" data-bs-toggle="modal" (click)="prepararFormArchivo(s.id)"
+              data-bs-target="#modalArchivo">
+              + Agregar Archivo
+            </button>
+            <button class="btn btn-warning-louk" data-bs-toggle="modal" data-bs-target="#modalSeccion"
+              (click)="prepararSeccion(s)">
+              Modificar Sección
+            </button>
+            <button class="btn btn-danger-louk" (click)="eliminarSeccion(s.id)">Eliminar Sección</button>
+
+          </th>
+
+          <th style="background-color: #428b5700" colspan="2" scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let a of s.archivos">
+          <td class="col-11" [class]="'a' + (secciones.indexOf(s) % 2)" *ngIf="a.tipo == 'imagen'">
+            <img [src]="a.path" class="img-fluid rounded" alt="archivo guardado" />
+          </td>
+          <td [class]="'a' + (secciones.indexOf(s) % 2)" *ngIf="a.tipo == 'documento'">
+            <img alt="icono" src="../../../../assets/icons/pdf.png" width="25px" /><a [href]="a.path" target="_blank">
+              {{ a.nombre }}</a>
+          </td>
+          <td [class]="'a' + (secciones.indexOf(s) % 2)" *ngIf="a.tipo == 'video'">
+            <h6>{{ a.nombre }}</h6>
+            <video width="640" height="360" class="img-fluid" controls>
+              <source [src]="a.path" type="video/mp4" />
+              <!-- Texto alternativo -->
+            </video>
+          </td>
+          <td class="col-11" [class]="'a' + (secciones.indexOf(s) % 2)" *ngIf="a.tipo == 'youtube'">
+            <div class="embed-responsive embed-responsive-21by9">
+              <iframe width="100%" height="320px" class="embed-responsive-item" [src]="a.safeUrl"
+                title="YouTube video player" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+          </td>
+          <td style="text-align: center" [class]="'a' + (secciones.indexOf(s) % 2)">
+            <button class="btn btn-danger" (click)="eliminarArchivo(a.id)">X</button>
+          </td>
+        </tr>
+        <!--
+        
+        <tr>
+          <td colspan="2" *ngIf="s.archivos.length == 0">No hay archivos agregados</td>
+        </tr>
+        -->
+      </tbody>
+    </table>
+
+    <!--Modal -->
+    <div class="modal fade" id="modalArchivo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">
+              Generar Contenido
+            </h5>
+          </div>
+          <div class="modal-body">
+            <form class="row g-5">
+              <div class="col-md-8">
+                <div class="row g-3">
+                  <div class="mb-3 form-group">
+                    <label for="titulo" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="titulo" name="titulo" [(ngModel)]="archivo.nombre" />
+                  </div>
+                  <div class="mb-3 form-group">
+                    <label for="tipo" class="form-label">Tipo</label>
+                    <select id="tipo" class="form-select" name="tipo" [(ngModel)]="archivo.tipo">
+                      <option value="imagen">Imagen</option>
+                      <!--<option value="video">Video</option> -->
+                      <option value="documento">Documento</option>
+                      <option value="youtube">Video de Youtube</option>
+                    </select>
+                  </div>
+                  <div *ngIf="archivo.tipo == 'imagen'" class="mb-3 form-group">
+                    <label class="form-label" for="file">Elegir un archivo de su PC</label>
+                    <input id="file" type="file" accept="image/*" (change)="onFileSelected($event)" />
+                  </div>
+                  <div *ngIf="archivo.tipo == 'documento'" class="mb-3 form-group">
+                    <label class="form-label" for="file">Elegir un archivo de su PC</label>
+                    <input id="file" type="file" accept=".pdf" (change)="onFileSelected($event)" />
+                  </div>
+                  <!-- 
+                  <div *ngIf="archivo.tipo=='video'" class="mb-3 form-group">
+                    <label class="form-label" for="file">Elegir un archivo de su PC</label>
+                    <input id="file" type="file" accept="video/*" (change)="onFileSelected($event)" />
+                  </div>
+                  -->
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-success col-md-4 m-3" (click)="registrarArchivo(s.id)"
+                  data-bs-dismiss="modal">
+                  Generar Archivo
+                </button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="cancelarAltaArchivo()" >
+                  Cancelar
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    
+  </article>
+  <br />
+</section>
+
+<!-- Modal FORMULARIO DE MODIFICACIÓN UNIDAD -->
+<div class="modal fade" id="modalUnidadModificacion" tabindex="-1" aria-labelledby="modalUnidadModificacionLabel"
+  aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalUnidadModificacionLabel">
+          Formulario de Unidad
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form class="row g-5">
+          <div class="col-md-8">
+            <div class="row g-3">
+              <div class="mb-3 form-group">
+                <label for="titulo" class="form-label">Titulo de la Unidad</label>
+                <input type="text" class="form-control" id="titulo" name="titulo" [(ngModel)]="obUnidad.titulo" />
+              </div>
+              <div class="mb-3 form-group">
+                <label for="descripcion" class="form-label">Descripcion de la Unidad</label>
+                <textarea type="text" class="form-control" id="descripcion" name="descripcion"
+                  [(ngModel)]="obUnidad.descripcion"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button data-bs-dismiss="modal" type="submit" class="btn btn-warning col-md-4 m-3"
+              (click)="modificarUnidad()">
+              Modificar Unidad
+            </button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+              Close
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal FORMULARIO DE SECCIÓN-->
+<div class="modal fade" id="modalSeccion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Generar Contenido</h5>
+      </div>
+      <div class="modal-body">
+        <form class="row g-5">
+          <div class="col-md-8">
+            <div class="row g-3">
+              <div class="mb-3 form-group">
+                <label for="titulo" class="form-label">Titulo del Contenido</label>
+                <input type="text" class="form-control" id="titulo" name="titulo" [(ngModel)]="obSeccion.titulo" />
+              </div>
+              <div class="mb-3 form-group">
+                <label for="descripcion" class="form-label">Descripcion del Contenido</label>
+                <textarea type="text" class="form-control" id="descripcion" name="descripcion"
+                  [(ngModel)]="obSeccion.descripcion"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-success col-md-4 m-3" (click)="registrarSeccion()"
+              data-bs-dismiss="modal">
+              Generar Sección
+            </button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

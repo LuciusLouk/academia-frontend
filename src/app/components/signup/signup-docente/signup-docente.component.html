@@ -1,0 +1,89 @@
+<div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-7 col-lg-6">
+        <a href="https://imgur.com/t1Cuyeb">
+          <img width="500px" alt="logo de login" src="./../../../../assets/work1.webp" title="source: imgur.com" /></a>
+      
+          <a class="btn btn-primary" [routerLink]="['/app-signup-alumno']">Registrarse como alumno</a>
+        </div>
+        
+      <div class="col-md-5 col-lg-6">
+        <div class="card">
+          <div class="card-header text-center">
+            <h4>Registro de Usuario</h4>
+          </div>
+          <div class="card-body">
+            <form>
+                <div class="mb-3">
+                  <label for="username" class="form-label">Nombre de Usuario</label>
+                  <input type="text" class="form-control" id="username" placeholder="JuanPe" required
+                  [(ngModel)]="obDocente.nombreUsuario" name="username">
+                </div>
+              <div class="mb-3">
+                <label for="email" class="form-label">Correo Electrónico</label>
+                <input type="email" class="form-control" id="email" placeholder="juan.perez@example.com" required
+                [(ngModel)]="obDocente.email" name="email">
+              </div>
+              <div class="mb-3">
+                <label for="password" class="form-label">Contraseña</label>
+                <input type="password" class="form-control" id="password" placeholder="********" required
+                [(ngModel)]="obDocente.password" name="password">
+              </div>
+              <div class="mb-3">
+                <label for="confirmPassword" class="form-label">Confirmar Contraseña</label>
+                <input type="password" class="form-control" id="confirmPassword" placeholder="********" required>
+              </div>
+              <div class="mb-3">
+                <label for="name" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="name" placeholder="Juan" required
+                [(ngModel)]="obDocente.nombre" name="name">
+              </div>
+              <div class="mb-3">
+                <label for="lastname" class="form-label">Apellido</label>
+                <input type="text" class="form-control" id="lastname" placeholder="Pérez" required
+                [(ngModel)]="obDocente.apellido" name="lastname">
+              </div>
+              <div class="mb-3">
+                <label for="phone" class="form-label">Teléfono</label>
+                <input type="tel" class="form-control" id="phone" placeholder="+54 388 400 0000"
+                [(ngModel)]="obDocente.telefono" name="phone" >
+              </div>
+              <div class="mb-3">
+                <label for="dniType" class="form-label">Tipo de DNI</label>
+                <select class="form-select" id="dniType" required name="dniType" [(ngModel)]="obDocente.tipoDni">
+                    <option value="DNI">DNI</option>
+                    <option value="LC">LC</option>
+                    <option value="LE">LE</option>
+                    <option value="CI">CI</option>
+                    <option value="PASAPORTE">Pasaporte</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="nroDni" class="form-label">Nro DNI</label>
+                <input type="text" class="form-control" id="nroDni" placeholder="10000000" required 
+                [(ngModel)]="obDocente.dni" name="dni">
+              </div>
+              <div class="mb-3">
+                <label for="pais" class="form-label">Pais</label>
+                <input type="text" class="form-control" id="pais" placeholder="Pais" required
+                [(ngModel)]="obDocente.pais" name="pais">
+              </div>
+              <div class="mb-3">
+                <label for="cvu" class="form-label">CBU/CVU</label>
+                <input type="text" class="form-control" id="cvu" placeholder="Pérez" required
+                [(ngModel)]="obDocente.cvu" name="cvu">
+              </div>
+              <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="terms" required>
+                <label class="form-check-label" for="terms">Acepto los <a href="#">términos y condiciones</a></label>
+              </div>
+              <button type="submit" class="btn btn-primary w-100" (click)="registrarDocente()">Registrarse</button>
+            </form>
+          </div>
+          <div class="card-footer text-center">
+            <p>¿Ya tienes cuenta? <a href="#">Inicia sesión aquí</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
